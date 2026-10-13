@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; connect-src 'self'; worker-src 'self' blob:">
+<link rel="icon" href="data:,">
+<title>Подготовка фото к нейрофотосессии</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.45 system-ui,sans-serif;margin:0;padding:12px;max-width:900px;margin:auto;color:#222}
+h1{font-size:1.4em;margin:.3em 0}.muted{color:#666;font-size:.9em}
+#controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+button,label.btn{display:block;text-align:center;width:100%;border:2px dashed #2a5bd7;background:#2a5bd7;color:#fff;border:0;border-radius:8px;padding:10px 14px;font-size:1em;cursor:pointer}
+button:disabled{opacity:.5}#file{position:absolute;opacity:0;width:1px;height:1px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.card{border:1px solid #ddd;border-radius:10px;padding:8px;min-width:0}.card img{width:100%;border-radius:6px;display:block}
+.v{font-weight:700;margin-top:4px}.good .v{color:#167a2f}.replace .v{color:#b3261e}.card .r{font-size:.85em;overflow-wrap:anywhere}
+.card button{width:100%;margin-top:6px;padding:6px;font-size:.85em}details{margin:14px 0}a{color:#2a5bd7}
+</style></head><body>
+<h1 id="t-title"></h1><p id="t-lead"></p>
+<div id="controls"><label class="btn" for="file" id="t-pick"></label><input type="file" id="file" accept="image/*" multiple>
+<label><span id="t-frame"></span> <select id="frame"><option value="1" id="t-sq"></option><option value="0.8" id="t-pt"></option></select></label>
+<button id="all" disabled></button></div>
+<p id="status" class="muted"></p><p id="summary"></p>
+<div id="grid"></div>
+<details open><summary id="t-memo"></summary><ol id="memo"></ol></details>
+<p class="muted" id="t-privacy"></p><p class="muted" id="t-limits"></p>
+<details><summary id="t-limits-title"></summary><ul id="limits-list"></ul></details>
+<p><a id="improve" href="https://github.com/Phenolemox/photoprep/issues/new" target="_blank" rel="noopener"></a></p>
+<script type="module" src="app.js"></script>
+</body></html>
