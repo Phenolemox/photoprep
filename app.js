@@ -20,7 +20,7 @@ window.__photoprep = { results, TH, ready: false, loadMs: null };
     detector = await FaceDetector.createFromOptions(fs, { baseOptions: { modelAssetPath: MODEL, delegate: 'CPU' },
       runningMode: 'IMAGE', minDetectionConfidence: TH.conf });
     const ms = Math.round(performance.now() - t0); window.__photoprep.loadMs = ms; window.__photoprep.ready = true;
-    set('status', `${T.ready} (${(ms / 1000).toFixed(1)} с)`);
+    set('status', `${T.ready} (${(ms / 1000).toFixed(1)} ${T.sec})`);
   } catch (e) { console.warn(e); window.__photoprep.loadFailed = true; set('status', T.loadFail); }
 })();
 

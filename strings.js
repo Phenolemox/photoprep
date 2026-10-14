@@ -1,10 +1,13 @@
 // Тексты: ЛИРА, copy_LIRA.md (13.10); flat и limits — ГЕФЕСТ. Все тексты интерфейса в одном месте (замена из copy_LIRA.md — правкой только этого файла).
-export const T = {
+import { EN } from './strings_en.js';
+
+const RU = {
   title: 'Подготовка фото к нейрофотосессии',
   lead: 'Проверьте снимки до загрузки в бот — плохие исходники дают плохой результат.',
   privacy: 'Фото не покидает ваше устройство: всё проверяется прямо в браузере. Счётчиков нет; из сети загружается только модель поиска лица с этого же сайта.',
   pick: 'Перетащите фото сюда или нажмите, чтобы выбрать (можно несколько)',
   frame: 'Рамка:', frameSquare: 'Квадрат 1:1', framePortrait: 'Портрет 4:5',
+  sec: 'с',
   loading: 'Загружаем модель поиска лица…', ready: 'Модель готова', loadFail: 'Не удалось загрузить модель. Обновите страницу.',
   good: 'Годится', replace: 'Заменить', download: 'Скачать обрезку', downloadAll: 'Скачать все годные',
   summary: (g, n) => `Годится ${g} из ${n}. Советуем подготовить около 10 снимков (сколько просит ваш бот — смотрите у него).`,
@@ -31,7 +34,7 @@ export const T = {
     'Свежие фото — та же причёска и внешность, что сейчас.',
     'Без размытия: переснимите, если сомневаетесь.',
   ],
-  improve: 'Предложить улучшение',
+  improve: 'Оставить отзыв (откроется GitHub, нужен аккаунт)',
   limits: 'Оценка автоматическая и может ошибаться — доверяйте и своему глазу.',
   limitsTitle: 'Ограничения',
   limitations: [
@@ -43,3 +46,15 @@ export const T = {
     'В iOS Safari скачивание не проверено.',
   ],
 };
+
+// Язык: ?lang=ru|en в адресе, иначе первый язык браузера. ru/uk/be/kk и неизвестный — русский; любой другой — английский (если EN заполнен).
+function pick() {
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q === 'ru' || q === 'en') return q;
+  const first = ((navigator.languages && navigator.languages[0]) || navigator.language || 'ru').toLowerCase();
+  return /^(ru|uk|be|kk)\b/.test(first) ? 'ru' : 'en';
+}
+export const LANG = EN && pick() === 'en' ? 'en' : 'ru';
+export const T = LANG === 'en' ? { ...RU, ...EN, reasons: { ...RU.reasons, ...EN.reasons } } : RU;
+document.documentElement.lang = LANG;
+document.title = T.title;

@@ -1,0 +1,32 @@
+name: "Feedback / Отзыв"
+description: "Tell us whether Photoprep helped you. Расскажите, помог ли вам Photoprep."
+title: "[feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for trying Photoprep! Three short questions; please do not include personal data or photos.
+        Спасибо, что попробовали Photoprep! Три коротких вопроса; пожалуйста, не прикладывайте личные данные и фото.
+  - type: dropdown
+    id: helped
+    attributes:
+      label: "Did it help you choose photos? / Помог ли он вам отобрать фото?"
+      options:
+        - "Yes / Да"
+        - "Partly / Частично"
+        - "No / Нет"
+    validations:
+      required: true
+  - type: input
+    id: service
+    attributes:
+      label: "What were you preparing photos for? / Для какого сервиса вы готовили фото?"
+      placeholder: "e.g. a dating app, a CV, a profile / например, сайт знакомств, резюме, профиль"
+    validations:
+      required: false
+  - type: textarea
+    id: missing
+    attributes:
+      label: "What was missing? / Чего вам не хватило?"
+    validations:
+      required: false
